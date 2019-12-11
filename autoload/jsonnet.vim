@@ -108,6 +108,9 @@ function! jsonnet#Format()
         silent edit!
         let &fileformat = l:originalFileFormat
         let &syntax = &syntax
+
+        " QRS add
+        silent! lclose 
     elseif g:jsonnet_fmt_fail_silently == 0
         " FixMe: We could leverage the errors coming from the `jsonnetfmt` and
         " give immediate feedback to the user at every save time.
