@@ -117,12 +117,12 @@ function! jsonnet#Format()
         " or not. Nevertheless, this else block is a suitable place to benefit
         " from the `jsonnetfmt` errors.
     else
-        " QRS add
+        " QRS add, use lopen (copen used by asyncrun plugin)
         exe "redir! > " . l:tmpname
         silent echon substitute(l:out, 'STATIC ERROR: ' . l:tmpname, expand('%s'), 'g')
         redir END
-        execute "silent! cgetfile " . l:tmpname
-        botright copen
+        execute "silent! lgetfile " . l:tmpname
+        botright lopen
     endif
 
     " Restore our cursor/windows positions.
