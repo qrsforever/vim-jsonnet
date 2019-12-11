@@ -116,6 +116,13 @@ function! jsonnet#Format()
         " We are not sure whether this is desired in the vim-jsonnet community
         " or not. Nevertheless, this else block is a suitable place to benefit
         " from the `jsonnetfmt` errors.
+    else
+        " QRS add
+        exe "redir! > " . l:tmpname
+        silent echon substitute(l:out, 'STATIC ERROR: ' . l:tmpname, expand('%s'), 'g')
+        redir END
+        execute "silent! cgetfile " . l:tmpname
+        botright copen
     endif
 
     " Restore our cursor/windows positions.
